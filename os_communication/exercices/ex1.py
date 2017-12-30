@@ -19,7 +19,7 @@ while not os.path.exists(source_path):
     source_path = input('\nLa carpeta de entrada no existeix, introdueix una nova:\n')
 
 while not os.path.exists(target_path):
-    source_path = input('\nLa carpeta de sortida no existeix, introdueix una nova:\n')
+    target_path = input('\nLa carpeta de sortida no existeix, introdueix una nova:\n')
 
 print("\nBuscant i copiant fitxers ...")
 print('\tHas introduit extensió: ', file_extension)
@@ -44,39 +44,30 @@ def find_files_with_provided_extension(file_extension, source_path):
 
     return files, files_full_path, file_sizes_GB
 
-
 files, files_full_path, file_sizes_GB = find_files_with_provided_extension(file_extension, source_path)
 
-print('\n\tS´han trobat ', len(files), " arxius,", len(set(files)), "arxius amb noms diferents." )
-print('\tTots els arxius ocupen: ', sum(file_sizes_GB), " GB.")
-
+print("\nResultats")
+print("\tS'han trobat ", len(files), " arxius,", len(set(files)), "arxius amb noms diferents." )
+print('\tTots els arxius ocupen: {:.2f} GB'.format(sum(file_sizes_GB)))
 
 ### Copy the files to the target_path
 def copy_files_to_target_path(files_full_path, target_path):
-     
+    
     for f in files_full_path:
         fname = os.path.split(f)[1]
         new_path = os.path.join(target_path, fname)
-        
         if os.path.exists(new_path):
             print("\tL'arxiu ", f, " ja existeix a la carpeta de sortida.")
     
     for f in files_full_path:
         fname = os.path.split(f)[1]
-        new_path = os.path.join(target_path, fname)
-     
+        new_path = os.path.join(target_path, fname)     
         if os.path.exists(new_path):
             pass
         else:
             shutil.copy2(f, new_path)
-
     print("\nTots els fitxers ja s'han copiat.")
 
 copy_files_to_target_path(files_full_path, target_path)
-
-
-
-
-
 
 
