@@ -50,6 +50,7 @@ print("\nResultats")
 print("\tS'han trobat ", len(files), " arxius,", len(set(files)), "arxius amb noms diferents." )
 print('\tTots els arxius ocupen: {:.2f} GB'.format(sum(file_sizes_GB)))
 
+
 ### Copy the files to the target_path
 def copy_files_to_target_path(files_full_path, target_path):
     
