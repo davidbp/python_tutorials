@@ -3,6 +3,9 @@
 ### Then the script searches all files with the given `file_extension` then writes them
 ### in a file with the size of the fize.
 
+### Exercise
+### Extend this script so that it works with multiple extensions (done in ex3.py)
+
 
 import os       # for navigating the filesystem
 import shutil   # for copying files
@@ -12,6 +15,7 @@ import datetime # for creating datime
 print('\nScript per a buscar arxius de una certa extensió i crear una taula amb els resultats.')
 
 file_extension = input('\nIntrodueix extensió a considerar (mp3, mkv, mp4):\n')
+
 source_path = input('\nIntroduir carpeta de entrada (on es busquen els fixers):\n')
 unit_size   = input('\nIntroduir unitat de mesura (MB o GB):\n')
 
