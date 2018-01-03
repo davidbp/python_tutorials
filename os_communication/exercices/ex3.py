@@ -7,10 +7,13 @@ import os       # for navigating the filesystem
 import shutil   # for copying files
 import csv      # for creating the table
 import datetime # for creating datime
+import platform
 
 print('\nScript per a buscar arxius de una certa extensió i crear una taula amb els resultats.')
+print("\nScript corrent en python: ", platform.python_version())
 
-file_extensions = input('\nIntrodueix extensions a considerar separades per comma (mp3,mkv,mp4):\n')
+
+file_extensions = input('\nIntrodueix extensions a considerar separades per comma. Per exemple: avi,mkv,mp4\n')
 
 if ',' in file_extensions:
     file_extensions = file_extensions.split(',')
