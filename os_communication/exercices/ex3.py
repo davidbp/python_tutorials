@@ -79,7 +79,6 @@ print('\tTots els arxius ocupen: {:.2f} {}'.format(sum(file_sizes), unit_size))
 def make_csv_with_gathered_information(file_extensions, files, files_full_path, file_sizes, unit_size):
     
     d = datetime.datetime.today()
-
     data = [['Nom', 'Carpeta', unit_size]]
     for i in range(len(files)):
         folder_path = os.path.split(files_full_path[i])[0]
@@ -90,8 +89,7 @@ def make_csv_with_gathered_information(file_extensions, files, files_full_path, 
         file_extensions_str += '_' + ex
 
     name_file = 'results' + file_extensions_str + '({0},{1},{2})'.format(d.day, d.month, d.year) +'.csv' 
-
-    
+ 
     with open(name_file, 'w', encoding='utf-8') as fp:
         a = csv.writer(fp)
         a.writerows(data)
