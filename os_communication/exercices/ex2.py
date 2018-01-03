@@ -71,7 +71,7 @@ def make_csv_with_gathered_information(file_extension, files, files_full_path, f
 
     name_file = 'results_' + file_extension + '({0},{1},{2})'.format(d.day, d.month, d.year) +'.csv' 
 
-    with open(name_file, 'w') as fp:
+    with open(name_file, 'w', encoding='utf-8') as fp:
         a = csv.writer(fp)
         a.writerows(data)
 
