@@ -5,6 +5,18 @@
 2) Unzip the folder and move it to your home directory
 3) Add the following to your `.bash_profile` in mac or `.basrc` in linux
 
+
+```
+######## Setting path for pyspark ###################################### 
+
+export SPARK_PATH=~/spark-2.3.0-bin-hadoop2.7
+export PYSPARK_PYTHON=python3
+export SPARK_HOME=~/spark-2.3.0-bin-hadoop2.7
+alias pyspark=$SPARK_PATH/bin/pyspark
+
+###################################################################### 
+```
+
 ```
 ######## Setting path for spark ###################################### 
 
