@@ -165,3 +165,11 @@ https://stackoverflow.com/questions/32001248/whats-the-difference-between-spark-
 About CPU utilization
 - http://www.brendangregg.com/blog/2017-05-09/cpu-utilization-is-wrong.html
 - https://github.com/LucaCanali/Miscellaneous/blob/master/Spark_Notes/Tools_Linux_Memory_Perf_Measure.md
+
+#### sparkmeasure
+
+sparkMeasure is a tool for performance troubleshooting of Apache Spark workloads
+It simplifies the collection and analysis of Spark performance metrics.
+It is also intended also as proof-of-concept code on how to use Spark Listeners for custom Spark metrics collection.
+
+- https://github.com/LucaCanali/sparkMeasure
