@@ -1,0 +1,18 @@
+
+The following bash command can be used to install all the requirements written in a `requirements.txt`
+using conda.
+
+```
+while read requirement; do conda install --yes $requirement; done < requirements.txt
+```
+
+The requirements folder should have rows of the form `package_name>=version`. For example
+
+```
+decorator>=4.1.2
+entrypoints>=0.2.3
+graphviz>=0.8.2
+html5lib>=0.999999999
+ipykernel>=4.6.1
+ipython>=6.2.0
+```
