@@ -16,7 +16,7 @@ while(1):
     fgmask = cv2.morphologyEx(fgmask, cv2.MORPH_OPEN, kernel)
 
     cv2.imshow('frame',fgmask)
-    k = cv2.waitKey(30) & 0xff
+    k = cv2.waitKey(60) & 0xff
     if k == 27:
         break
 
