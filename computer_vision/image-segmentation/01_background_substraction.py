@@ -1,3 +1,6 @@
+### This tutorial is from 
+### https://docs.opencv.org/3.1.0/db/d5c/tutorial_py_bg_subtraction.html
+
 import numpy as np
 import cv2
 
