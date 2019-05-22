@@ -1,0 +1,14 @@
+
+#### Parallelism in one line
+http://chriskiehl.com/article/parallelism-in-one-line/
+
+#### Python Multithreading Tutorial: Concurrency and Parallelism
+https://www.toptal.com/python/beginners-guide-to-concurrency-and-parallelism-in-python
+
+#### Joblib example
+http://academic.bancey.com/parallelization-in-python-example-with-joblib/
+
+#### Concurrent python
+https://www.slideshare.net/dabeaz/an-introduction-to-python-concurrency
+
+
