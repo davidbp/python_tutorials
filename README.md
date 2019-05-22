@@ -1,4 +1,5 @@
 # python_tutorials
+
 This repository contains little tutorials showcasing relevant aspects of python 3.
 
 The repository is organized into 5 sections (folders) each folder contains little scripts to test and show how to accomplish different tasks.
@@ -11,7 +12,7 @@ The repository is organized into 5 sections (folders) each folder contains littl
 
 
 
-##Python Basics
+## Python Basics
 
 This folder contains subfolders dedicated to different python modules or topics.
 
