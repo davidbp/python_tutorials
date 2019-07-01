@@ -42,7 +42,7 @@ Notice that `sys.argv` is a list. You can use the strings inside this list to de
 
 The module `argparse` from the Python Standard Library allows us to easily write command-line interfaces. To do so, we can define the arguments we expect will be passed when calling a python program. The arguments can be defined as key-word arguments. 
 
-
+​	args = build_argument_parser()
 
 ##### Basic receipt to define a command-line interface with argparse.ArgumentParse
 
