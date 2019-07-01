@@ -16,16 +16,19 @@ The repository is organized into 5 sections (folders) each folder contains littl
 
 This folder contains subfolders dedicated to different python modules or topics.
 
-- **sys**: Control system-specific parameters and functions
-  - sys.argv: Basic way to retrieve arguments to python scripts. First element is the python script name.
-  - argparse: How to pass keyword arguments to python scripts.
+- **argparse**: build a command-line interfaces for your python programs.
+   - `sys.argv`: Basic way to retrieve arguments used to call python scripts from bash. 
+   - `argparse`: How to pass keyword arguments to python scripts.
 
 - **async**: Launch python tasks without beeing blocked by others. Typically very usefull for io bound tasks.
+
 - **concurrent_execution**: Do work in parallel in python
   - multiprocessing: How to use multiple threads in parallel in python.
 
 - **io**: Write to files and read from files
+
 - **strings**: Format, edit, parse and construct strings.
+
 - **os_communication**: Move, create, read, inspect the file system of your operating system inside python.
 
 
