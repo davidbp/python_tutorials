@@ -16,7 +16,7 @@ The repository is organized into 5 sections (folders) each folder contains littl
 
 This folder contains subfolders dedicated to different python modules or topics.
 
-- **argparse**: build a command-line interfaces for your python programs.
+- **argparse**: build command-line interfaces for your python programs.
    - `sys.argv`: Basic way to retrieve arguments used to call python scripts from bash. 
    - `argparse`: How to pass keyword arguments to python scripts.
 
