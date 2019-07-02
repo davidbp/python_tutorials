@@ -25,7 +25,7 @@ if __name__ == "__main__":
 
 This code uses `sys.argv` in order to retrieve the bash commands passed after calling `test_sys_argv.py`. For example if you run `python test_sys_argv.py dog cat` you will get the following:
 
-```
+```bash
 python 01_test_sys_argv.py dog cat
 ```
 
@@ -99,7 +99,7 @@ test_argparse.py: error: the following arguments are required: -r/--radius, -H/-
 
 You can also notice that a useful message is generated telling the user what arguments are needed and the format  required to  pass such information. Example of a correct command line call to our program:
 
-```
+```bash
 python 02_test_argparse.py -r 1 -H 1
 ```
 
@@ -139,14 +139,14 @@ if __name__ == "__main__":
 
 Notice that this program does not behave as you might expect when using "False"
 
-```
+```bash
 python 03_problematic_bool.py -n David -a 20 -ec False  
 ```
 
 	    Person name: David
 	    Age: 20
 	    Convicted: True
-```
+```bash
 python 03_problematic_bool.py -n David -a 20 -ec True  
 ```
 
@@ -189,7 +189,7 @@ if __name__ == "__main__":
 
 Now we don't have the problem we observed previously.
 
-```
+```bash
 python3 04_casting_bool.py -n David -a 20 -ec False
 ```
 
@@ -199,7 +199,7 @@ python3 04_casting_bool.py -n David -a 20 -ec False
 	Convicted: False
 ```
 
-```
+```bash
 python3 04_casting_bool.py -n David -a 20 -ec True
 ```
 
@@ -266,8 +266,8 @@ This example provides behavior changes depending on mutually exclusive arguments
 
 Standard version:
 
-```
-python 03_test_argparse_mutually_exclusive_group.py -r 10 -H 23
+```bash
+python 05_test_argparse_mutually_exclusive_group.py -r 10 -H 23
 ```
 
 ```
@@ -276,8 +276,8 @@ Cylinder volume is 7225.663103256525
 
 Verbose version:
 
-```
-python 03_test_argparse_mutually_exclusive_group.py -r 10 -H 23 -v
+```bash
+python 05_test_argparse_mutually_exclusive_group.py -r 10 -H 23 -v
 ```
 
 ```
@@ -287,7 +287,7 @@ Cylinder volume of radius=10.0 and height=23.0 is 7225.663103256525
 Quiet version:
 
 ```bash
-python 03_test_argparse_mutually_exclusive_group.py -r 10 -H 23 -q
+python 05_test_argparse_mutually_exclusive_group.py -r 10 -H 23 -q
 ```
 
 ```
