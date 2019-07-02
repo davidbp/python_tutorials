@@ -22,10 +22,10 @@ def build_argument_parser():
 
 def cylinder_volume(radius, height ):
     return math.pi * (radius**2) * height
-    
+
 if __name__ == "__main__":
     args = build_argument_parser()
-    radius, height = args.radius, args.height
+    radius, height = agrs.radius, args.height
     
     volume = cylinder_volume(radius, height)
     print("Cylinder volume is {}".format(volume))
