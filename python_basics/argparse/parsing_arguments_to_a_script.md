@@ -1,7 +1,5 @@
 
 
-
-
 ## How to get the input arguments of a Python script inside python
 
 In Python you can retrieve arguments of an script using the `sys` module.
@@ -295,4 +293,58 @@ python 05_test_argparse_mutually_exclusive_group.py -r 10 -H 23 -q
 ```
 
 
+
+
+
+## Toy program: csv pretty printer
+
+Let us build a program to print tables (like csv files) in a pretty way in the terminal.
+
+We can use pandas (a python library for manipulating tabular data) to do most of the work for us.
+
+##### Example `06_csv_plotter.py`
+
+```python
+import pandas as pd
+import argparse
+
+def str2bool(v):
+    if isinstance(v, bool):
+       return v
+    if v.lower() in ('yes', 'true', 't', 'y', '1'):
+        return True
+    elif v.lower() in ('no', 'false', 'f', 'n', '0'):
+        return False
+    else:
+        raise argparse.ArgumentTypeError('Boolean value expected.')
+
+def build_argument_parser():
+    parser = argparse.ArgumentParser(description="Pretty printer csv")
+    parser.add_argument('-f', '--file', type=str, metavar='', required=True, help='Input csv file to be printed')
+    parser.add_argument('-H', '--head', type=str2bool, metavar='', required=False, help='Wheather to print only the head of the csv or not (default=False)')
+    args = parser.parse_args()
+    return args
+
+if __name__ == "__main__":
+    args = build_argument_parser()
+    df = pd.read_csv(args.file)
+
+    if args.head == True:
+        print("\n")
+        print(df.head())
+        print("\n")
+    else:
+        print("\n")
+        print(df)
+        print("\n")
+
+```
+
+
+
+We can use the program 
+
+```bash
+python show.py -f "mycsv.csv" 
+```
 
