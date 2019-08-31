@@ -1,0 +1,3 @@
+
+
+cythonize --inplace --annotate fib_cy.pyx
