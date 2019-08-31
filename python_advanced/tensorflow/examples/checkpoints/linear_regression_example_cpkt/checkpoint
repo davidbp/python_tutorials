@@ -1,0 +1,2 @@
+model_checkpoint_path: "linear_regression"
+all_model_checkpoint_paths: "linear_regression"

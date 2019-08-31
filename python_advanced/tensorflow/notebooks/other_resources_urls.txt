@@ -1,0 +1,5 @@
+
+#### Resources
+
+
+https://www.datacamp.com/community/tutorials/tensorflow-tutorial#gs.NQoo484
