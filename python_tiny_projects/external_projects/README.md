@@ -7,3 +7,4 @@ All projects in this folder are form other people.
 
 https://github.com/CVDLBOT/LM_filter_bank_python_code
 
+https://github.com/nicodjimenez/lstm
