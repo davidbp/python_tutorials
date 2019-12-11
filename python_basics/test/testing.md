@@ -1,7 +1,6 @@
 
 # Testing python code
 
-
 In order to make a test for the code inside  `myfile.py`  we create a file `test_myfile.py`.
 Inside `test_myfile.py` we will write the different tests for the methods found in `myfile.py`.
 
@@ -83,6 +82,21 @@ Moreover, if called with `-v` it will print the results of the tests. This means
 it is displayed even if you do not run the scirpt with `-v`, but if all tests are passed nothing will
 be printed unless you call the file explicitly with `-v`.
 
+
+There is an alternative way to check doctests without having a main in a file.
+You can run 
+```
+python -m doctest my_file.py  -v
+```
+to asses if all the doctests are passed.
+
+
+You can try for example 
+```
+python -m doctest factorial_withoutmain.py  -v
+```
+
+
 ##### Example
 
 Try running `python factorial_wrong.py` without the `-v` and the code will produce:
@@ -152,4 +166,14 @@ python factorial.py -v
 ```
 
 You should see a bunch of outputs with the different tests.
+
+
+Notice that `factorial_withoutmain.py` does not have a `doctest.testmod()` call. Therefore 
+
+```
+python factorial_withoutmain.py  -v
+```
+
+will not print anything.
+
 
