@@ -1,0 +1,15 @@
+How to compile cython files:
+
+
+1. Create a .pyx file with the cython code (Edit_Distance_c.pyx)
+
+2. Create a compile.py file as the one in this folder
+
+3. From a terminal run:
+   python3 compile.py build_ext --inplace 
+
+   Some files will be created in the same folder as the .pyx file
+
+4. Move the file with extension  .cpython-37m-x86_64-linux-gnu to the folder where you have your main notebook (and will import the compiled module)
+
+5. Import it as usual: from Edit_Distance_c import Edit_Distance_c
