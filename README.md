@@ -39,3 +39,12 @@ This folder contains subfolders dedicated to special (but general purpose)  pyth
 
 - **cython**:  Allows you to compile "python code" (cython code) to C and use it in python applications.
 - **pyspark**: Use pyspark to do parallel work in computer clusters.
+
+
+
+## Python Environments
+
+This folder contains subfolders dedicated to anaconda and virtualenv.
+
+- **virtualenv**: Default package manager for python.
+- **anaconda**: Package that allows creation of environments.
