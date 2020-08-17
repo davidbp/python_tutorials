@@ -9,15 +9,15 @@ cdef int check_rectangles(Rectangle* rectangles, int n_rectangles, float thresho
     cdef int n_out = 0
     cdef int i
     # C arrays contain no size information => we need to give it explicitly
-    for rectangle in rectangles[:n_rectangles]:
-        if rectangle[i].w * rectangle[i].h > threshold:
+    for rectangle in rectangles[0:n_rectangles]:
+        if rectangle.w * rectangle.h > threshold:
             n_out += 1
     return n_out
 
-def main():
+def verify_rectangles(N):
     cdef:
         int i
-        int n_rectangles = 10000000
+        int n_rectangles = N
         float threshold = 0.25
         Pool mem = Pool()
         Rectangle* rectangles = <Rectangle*>mem.alloc(n_rectangles, sizeof(Rectangle))
@@ -27,4 +27,4 @@ def main():
         rectangles[i].h = random()
 
     n_out = check_rectangles(rectangles, n_rectangles, threshold)
-    print(n_out)
+    #print(n_out)

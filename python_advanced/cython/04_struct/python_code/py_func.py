@@ -1,22 +1,23 @@
-import random
+from random import random
 from collections import namedtuple
 
-Couple = namedtuple('Couple', ['female', 'male'])#, verbose=False)
+Rectangle = namedtuple('Rectangle', ['w', 'h'])#, verbose=False)
 
+def check_rectangles(rectangles: list, n_rectangles: int, threshold: float):
+    n_out = 0
+    for rectangle in rectangles[0:n_rectangles]:
+        if rectangle.w * rectangle.h > threshold:
+            n_out += 1
+    return n_out
 
-def create_couples(n_couples:int):
-    couples = []
+def verify_rectangles(N):
+    n_rectangles = N
+    threshold = 0.25
 
-    for n in range(n_couples):
-        couple = Couple(random.randint(70_000,200_000),random.randint(70_000,200_000))
-        couples.append(couple)
-    return couples
+    rectangles = []
+    for i in range(n_rectangles):
+        rectangle = Rectangle(random(), random())
+        rectangles.append(rectangle)
 
-couples = create_couples(100_0000)
-
-
-def py_count_women_earning_more(couples):
-    count = 0
-    for c in couples:
-        count += c.female > c.male
-    return count
+    n_out = check_rectangles(rectangles, n_rectangles, threshold)
+    #print(n_out)
