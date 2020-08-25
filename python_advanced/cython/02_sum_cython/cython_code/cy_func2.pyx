@@ -9,8 +9,8 @@ For example
 
 	cpdef int sum(int n)
 
-
 """
+cimport cython
 
 cpdef int sum(int n):
     cdef:
@@ -19,6 +19,17 @@ cpdef int sum(int n):
 
     for i in range(n):
         s +=i
-
     return s
 
+
+@cython.boundscheck(False)
+@cython.wraparound(False)
+cpdef int sum2(int n):
+    cdef:
+        int s = 0
+        int i
+
+    for i in range(n):
+        s +=i
+
+    return s
