@@ -4,13 +4,13 @@ import random
 
 async def example_coroutine(i):
     time_io_wait = 3
-    await asyncio.sleep(time_io_wait)   # This simulates waiting some function 
-                                        # to recieve info from the internet for example
-    print("example {} execyted after {} seconds".format(i,time_io_wait))
-
+    await asyncio.sleep(time_io_wait)   
+    
 async def main():
     tasks = []
+    t0 = time.time()
     for i in range(5):
+        print(f'time passed after iter {i} is {time.time()-t0}')
         tasks.append(asyncio.ensure_future(example_coroutine(i)))
 
     await asyncio.gather(*tasks)

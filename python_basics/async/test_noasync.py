@@ -3,13 +3,13 @@ import random
 
 def example_coroutine(i):
     time_io_wait = 3
-    time.sleep(time_io_wait)   # This simulates waiting some function 
-                                  # to recieve info from the internet for example
-    print("example {} execyted after {} seconds".format(i,time_io_wait))
-
+    time.sleep(time_io_wait)   
+    
 def main():
     tasks = []
+    t0 = time.time()
     for i in range(5):
+        print(f'time after iter {i} is {time.time()-t0}')
         tasks.append(example_coroutine(i))
 
 t0=time.time()
