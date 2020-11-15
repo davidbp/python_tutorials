@@ -2,17 +2,17 @@
 
 **Async is a style of concurrent programming in which tasks release the CPU during waiting periods, so that other tasks can use it.**
 
-The key idea of concurrent programming is to do multiple things at once (as when we do multitasking).
+The key idea of concurrent programming is to do multiple things at once (as we usually do when we multitasking in our daily live).
 
-A pedantic example might bring some light here. Assume you have to do a cake and correct go to a nearby store to buy some food.
+A pedantic example might bring some light here. Assume you have to bake a cake and buy some groceries.
 
-- The time needed from beginning to end for the cake is 1 hour. We need 15 minutes to prepare the dough and then 45 minutes in the oven to cook the cake.
-- The time needed from beginning to end to buy some food is 20 minutes.
+- The time needed to bake the cake is 1 hour: 15 minutes are required to prepare the dough and 45 minutes are needed to bake  the cake in the oven.
+- The time needed to buy some groceries is 20 minutes.
 
 There are 2 possible solutions for this problem.
 
-- Sincronously: First we make the cake (1 hour) then we go and buy some food (20 inutes). We would need 1 hour and 20 minutes to complete the tasks sequentially.
-- Asincronously: First we make the dough of the cake and put it to the oven (15 minutes). Then we put the cake into the oven and then we go to buy some food. After 35=(15 + 20) minutes we would have already solved the second task but we would be waiting for the cake to be cooked. 
+- Sincronously: First we make the cake (1 hour) then we go to the grocery store (20 inutes). This solution would need 1 hour and 20 minutes to complete the tasks sequentially.
+- Asincronously: First we make the dough of the cake (15 minutes). Then we put the cake into the oven and realease the cake task to go to the grocery store. After 35=(15 + 20) minutes we would have already solved the second task but we would be waiting for the cake to be cooked. 
 
 The previous example is essentially what is shown in  the examples from `test_async.py` and  `test_noasync.py`. 
 
