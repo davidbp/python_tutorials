@@ -19,15 +19,23 @@ def monte_carlo_pi_part(n):
 
 def main():
 
+    n_threads = multiprocessing.cpu_count()
+    print('You have {0:1d} CPUs'.format(n_threads))
 
     # Nummber of points to use for the Pi estimation
-    n = 50_000_000
+    n = 100_000_000
     t0 = time.time()
 
-    # parallel map
-    count=monte_carlo_pi_part(n)
+    part_count=[int(n/n_threads) for i in range(n_threads)]
 
-    print("Esitmated value of Pi:: ", count/(n*1.0)*4 )
+    #Create the worker pool
+    # http://docs.python.org/library/multiprocessing.html#module-multiprocessing.pool
+    pool = Pool(processes=n_threads)   
+
+    # parallel map
+    count=pool.map(monte_carlo_pi_part, part_count)
+
+    print("Esitmated value of Pi:: ", sum(count)/(n*1.0)*4 )
     print(f'Runtime {round(time.time()-t0,2)} sec')
 
 if __name__=='__main__':
