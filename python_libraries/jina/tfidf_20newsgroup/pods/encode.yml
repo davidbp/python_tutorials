@@ -1,0 +1,8 @@
+!TFIDFTextEncoder
+#with:
+#  path_vectorizer: tfidf_vectorizer.pickle
+metas:
+  name: tfidf_encoder  # a customized name
+  py_modules: tfidf_vectorizer_jina.py
+with:
+  path_vectorizer: ./pods/tfidf_vectorizer.pickle
