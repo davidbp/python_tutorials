@@ -70,5 +70,5 @@ mprof plot mprofile_20210726125924.dat -o ./images/mem1.png
 
 This will generate the following plot:
 
-![mem1](/Users/davidbuchaca/Documents/git_stuff/python_tutorials/python_basics/profiling/memory_profiling/images/mem1.png)
+![mem1](./images/mem1.png)
 
