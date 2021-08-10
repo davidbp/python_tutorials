@@ -64,8 +64,8 @@ def profile_as_dataframe(function, *args, **kwargs):
     result_df = get_colum_values(lprof_code_lines, source_lines)
     return result_df
 
-def profile_plot(df_result):
+def plot_profile(df_result):
     lines = list(df_result['Line Contents'])
-    ax = df_result['% Time'].plot(kind='barh')
+    ax = df_result['% Time'][::-1].plot(kind='barh')
     ax.set_yticklabels(lines[::-1], rotation=0)
     ax.set_title('func_to_test profiling')
