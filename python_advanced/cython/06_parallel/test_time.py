@@ -1,32 +1,18 @@
-import timeit
+import numpy as np
+import time
+import juliacy
 
-N = 1000
-cy_time = timeit.timeit(f"cy_func.verify_rectangles({N})",   setup="import cy_func", number=100)
-py_time = timeit.timeit(f"py_func.verify_rectangles({N})",   setup="from python_code import py_func", number=100)
-
-print(f"\nResults for N={N} rectangles")
-print("\tcython non typed time: ", cy_time)
-print("\tpython time:           ", py_time)
-print("\tCython (typed) is {} times faster than python    ". format(py_time/cy_time))
+X, Y = np.meshgrid(np.linspace(-2.0 , 2.0,10000), np.linspace(-2.0, 2.0, 10000))
+julia = np.zeros_like(X, dtype=np.int32)
+c = -0.9 + 0.22143j
+radius2 = 4.0
 
 
-N = 10000
-cy_time = timeit.timeit(f"cy_func.verify_rectangles({N})",   setup="import cy_func", number=100)
-py_time = timeit.timeit(f"py_func.verify_rectangles({N})",   setup="from python_code import py_func", number=100)
-
-print(f"\nResults for N={N} rectangles")
-print("\tcython non typed time: ", cy_time)
-print("\tpython time:           ", py_time)
-print("\tCython (typed) is {} times faster than python    ". format(py_time/cy_time))
-
-N = 100000
-cy_time = timeit.timeit(f"cy_func.verify_rectangles({N})",   setup="import cy_func", number=100)
-py_time = timeit.timeit(f"py_func.verify_rectangles({N})",   setup="from python_code import py_func", number=100)
+t0 = time.time()
+juliacy.julia_set_cython_seq(X, Y, c.real, c.imag, 100, radius2, julia)
+print(f'time sequential:{time.time()-t0}')
 
 
-print(f"\nResults for N={N} rectangles")
-print("\tcython non typed time: ", cy_time)
-print("\tpython time:           ", py_time)
-print("\tCython (typed) is {} times faster than python    ". format(py_time/cy_time))
-
-
+t0 = time.time()
+juliacy.julia_set_cython_par(X, Y, c.real, c.imag, 100, radius2, julia)
+print(f'time parallel:{time.time() - t0}')
