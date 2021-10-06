@@ -1,6 +1,3 @@
-# distutils: extra_compile_args = -fopenmp
-# distutils: extra_link_args = -fopenmp
-
 from cython cimport boundscheck, wraparound
 from cython.parallel cimport prange
 
