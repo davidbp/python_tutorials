@@ -1,8 +1,16 @@
 
 """
-In order to build the cythoned version of a function the following command can be used:
+In order to build the cython version of a python module the following command can be used:
 
+```
 python3 setup_cython_functions.py build_ext --inplace
+```
+
+In OSX you might want to run
+
+```
+CC=/usr/local/opt/llvm/bin/clang++ python setup_cython_functions.py build_ext --inplace
+```
 
 This command should create a file:  juliacy.something.so
 
