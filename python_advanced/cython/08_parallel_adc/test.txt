@@ -1,0 +1,25 @@
+
+Examples = 100, features=786
+	time sequential: 0.000141143798828125
+	time parallel n_m: 0.004833698272705078
+Examples = 256, features=786
+	time sequential: 0.0003540515899658203
+	time parallel n_m: 0.00025200843811035156
+Examples = 512, features=786
+	time sequential: 0.0007371902465820312
+	time parallel n_m: 0.0003628730773925781
+Examples = 1000, features=786
+	time sequential: 0.0014090538024902344
+	time parallel n_m: 0.0006420612335205078
+Examples = 10000, features=786
+	time sequential: 0.015117168426513672
+	time parallel n_m: 0.005016803741455078
+Examples = 100000, features=786
+	time sequential: 0.11811280250549316
+	time parallel n_m: 0.03200674057006836
+Examples = 500000, features=786
+	time sequential: 0.8617231845855713
+	time parallel n_m: 0.15694880485534668
+Examples = 1000000, features=786
+	time sequential: 1.181053876876831
+	time parallel n_m: 0.31333208084106445

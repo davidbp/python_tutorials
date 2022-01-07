@@ -3,7 +3,7 @@
 In order to build the cython version of a python module the following command can be used:
 
 ```
-python3 setup_cython_functions.py build_ext --inplace
+python setup_cython_functions.py build_ext --inplace
 ```
 
 In OSX you might want to run
