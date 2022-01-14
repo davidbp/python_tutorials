@@ -55,6 +55,16 @@ def search_near_docs(client, query_doc):
 def delete_given_id(client, doc_id):
     client.data_object.delete(str(uuid.UUID(doc_id)))
 
+def update_doc_given_id(client, doc):
+    """
+    This would be similar to `da[id] = new_doc`
+    """
+
+    client.data_object.replace(
+        data_object = {'serialized_doc': doc.to_base64()},
+        vector=[0,0,0], # if this line is commented get error
+        class_name = 'Document',
+        uuid = doc.id)
 
 
 
