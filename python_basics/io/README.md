@@ -76,13 +76,11 @@ TypeError: cannot pickle 'sqlite3.Cursor' object
 
 
 
-#### Possible workaround
+#### Possible workaround (how not to do it)
 
 In this case we can't pickle the class containing an `sqlite3.Cursor` object. 
 Instead of saving the object with a `Cursor` we can store a path and then load it.
 This means we need to remove inside the `.save` the cursor  and create it inside the `.load`.
-
-
 
 ```python
 class ASQLite():
@@ -90,20 +88,20 @@ class ASQLite():
         self.a = a
         self.db_path = db_path
         self._connect_to_db()
-        
+
     def _connect_to_db(self):
-        self.cursor =  sqlite3.connect(self.db_path)
-        
+        self.cursor = sqlite3.connect(self.db_path)
+
     def save(self, path):
         self.cursor = None
-        with open(path,'wb') as f:
+        with open(path, 'wb') as f:
             pickle.dump(self, f)
-    
+
     @classmethod
     def load(self, path):
         with open(path, 'rb') as f:
-            asqlite =  pickle.load(f)
-        asqlite._connect_to_db()
+            asqlite = pickle.load(f)
+        asqlite.connect_to_db()
         return asqlite
 ```
 
@@ -115,6 +113,62 @@ a_sqlite.save('a_sqlite.pkl')
 a_sqlite_rec = ASQLite.load('a_sqlite.pkl')
 ```
 
+
+#### Possible workaround (how to do it)
+
+There is a better alternative that does not envolve modifying the `.cursor` inside the `.save`
+and `.load` functions but externalizes this work to `__setstate__` and `__getstate__`. The advantage of implementing 
+such methods is that even if a user uses `pickle` without calling `.save` and `.load` the code will still work.
+
+```python
+class ASQLite():
+    def __init__(self, a, db_path):
+        self.a = a
+        self.db_path = db_path
+        self.connect_to_db()
+
+    def __getstate__(self):
+        # remove the sql conection
+        state = dict(self.__dict__)
+        state['cursor'] = None
+        print('this is called when pickling')
+        return state
+
+    def __setstate__(self, state):
+        print('this is called when unpickling')
+        self.__dict__ = state
+        self.connect_to_db()
+
+    def connect_to_db(self):
+        self.cursor = sqlite3.connect(self.db_path)
+
+    def save(self, path):
+        with open(path, 'wb') as f:
+            pickle.dump(self, f)
+
+    @classmethod
+    def load(self, path):
+        with open(path, 'rb') as f:
+            asqlite = pickle.load(f)
+        return asqlite
+```
+Now, the following code 
+```python
+a_sqlite = ASQLite(a=1, db_path='database.db')
+a_sqlite.save('a_sqlite.pkl')
+a_sqlite_rec = ASQLite.load('a_sqlite.pkl')
+print(f'a_sqlite_rec.cursor={a_sqlite_rec.cursor}')
+```
+prints
+```commandline
+this is called when pickling
+this is called when unpickling
+a_sqlite_rec.cursor=<sqlite3.Connection object at 0x7fab287053f0>
+```
+This tells us that the method `__getstate__` is called when pickling the object and the 
+mehtod `__setstate__` is called when unpickling the object. Note that the intance `a_sqlite_rec` has
+access to `.cursor` even though the `load` method does not explicitly calls `connect_to_db`.
+This happens because `__setstate__` ends up calling `.connect_to_db`.
 
 ### Example of pickled class that might not work 
 
