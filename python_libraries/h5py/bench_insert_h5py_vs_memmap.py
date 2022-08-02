@@ -25,7 +25,7 @@ def insert_data_online(x, n_examples, n_features, batch_size=10_000):
     for Xbatch, start_ind, end_ind in batch_generator:
         print(Xbatch.shape, start_ind, end_ind)
         x[start_ind:end_ind] = Xbatch
-    
+        
 
 def load_data(x, bs=1_000):
     print('\n\nLOAD DATA')
@@ -59,7 +59,7 @@ def create_data_online(n_examples, n_features, batch_size):
             num += batch_size
     
     if num < n_examples:
-        X_batch = np.random.rand(23, n_features).astype(np.float32)
+        X_batch = np.random.rand(n_examples - num, n_features).astype(np.float32)
         yield X_batch, num, n_examples
         num += batch_size
 
@@ -87,16 +87,9 @@ clean_workspace()
 n_features_online = 512
 n_examples_online = 2_000_000
 
-np_memmap = np.memmap(shape=arr.shape, filename="./benchmark.nmm", mode='w+')
-t0 = time.time()
-insert_data_online(np_memmap, n_examples_online, n_features_online)
-t1 = time.time() - t0
-print(f'\n\n time insert_data_online(np_memmap) = {t1}\n\n')
-#cProfile.run('insert_data_online(np_memmap, n_examples_online, n_features_online)') 
-
 print('start hdf5')
 f = h5py.File("./benchmark.hdf5", "w", driver='core')
-hdf5_arr = f.create_dataset("mydataset", n_examples_online, dtype=np.float32)
+hdf5_arr = f.create_dataset("mydataset", (n_examples_online, n_features_online), dtype=np.float32)
 t0 = time.time()
 insert_data_online(hdf5_arr,  n_examples_online, n_features_online)
 t1 = time.time() - t0
@@ -104,6 +97,14 @@ print(f'\n\n time insert_data_online(hdf5_arr) = {t1}\n\n')
 #cProfile.run('insert_data_online(hdf5_arr,  n_examples_online, n_features_online)') 
 
 f.close()
+
+np_memmap = np.memmap(shape=(n_examples_online, n_features_online), filename="./benchmark.nmm", mode='w+')
+t0 = time.time()
+insert_data_online(np_memmap, n_examples_online, n_features_online)
+t1 = time.time() - t0
+print(f'\n\n time insert_data_online(np_memmap) = {t1}\n\n')
+#cProfile.run('insert_data_online(np_memmap, n_examples_online, n_features_online)') 
+
 
 
 ############################ load_data ############################
