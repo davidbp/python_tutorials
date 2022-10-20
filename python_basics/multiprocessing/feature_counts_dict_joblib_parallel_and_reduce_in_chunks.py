@@ -11,9 +11,19 @@ import sklearn
 from sklearn import feature_extraction, datasets
 from joblib import Parallel, delayed
 
-def aggregate_dicts(dicts, operation=sum):
-    all_keys = set().union(*[el.keys() for el in dicts])
-    return {k: sum([dic.get(k, 0) for dic in dicts]) for k in all_keys}
+def aggregate_dicts(dicts):
+
+    if len(dicts) == 1:
+        return dicts
+    
+    else:
+        result = dicts[0]
+
+        for d in dicts[1:]:
+            for k,v in d.items():
+                result[k] +=v
+        
+        return result
 
 def build_vocabulary(sentences, doc_analyzer):
     vocabulary = defaultdict(int)
