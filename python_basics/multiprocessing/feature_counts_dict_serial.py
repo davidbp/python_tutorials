@@ -27,9 +27,11 @@ def load_data():
 
 if __name__ == '__main__':
 
-    chunksize = 1000
+    n_jobs = 10
+    factor_multiplier = 100 # This factor ensures 1 million documents in the dataset
 
     sentences, _, _, _ = load_data()
+    sentences = sentences * factor_multiplier
     print(f'num docs = {len(sentences)}')
 
     count_vectorizer = feature_extraction.text.CountVectorizer()
@@ -44,4 +46,7 @@ if __name__ == '__main__':
     print(f'time taken {time.time()-t0} seconds')
     print('len(vocabulary.items())--->', len(vocabulary.items()))
     print("(vocabulary['from'], vocabulary['gift'])--->", (vocabulary['from'], vocabulary['gift']))
+
+
+
 
