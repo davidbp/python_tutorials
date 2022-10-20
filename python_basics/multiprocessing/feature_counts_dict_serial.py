@@ -1,8 +1,6 @@
 import string
 import random
 
-from multiprocessing import Pool
-from multiprocessing.managers import BaseManager, DictProxy
 from collections import defaultdict
 from itertools import repeat
 
@@ -10,24 +8,10 @@ import sklearn
 from sklearn import feature_extraction, datasets
 import time
 
-
-class MyManager(BaseManager):
-    pass
-
-MyManager.register('defaultdict', defaultdict, DictProxy)
-
 def update_vocabulary(sentence, vocabulary, doc_analyzer):
     words = doc_analyzer(sentence)
     for word in words:
-        vocabulary[word] = len(vocabulary)
-
-
-def build_sentences(n_examples):
-    letters = string.ascii_lowercase + ' ' + '.'
-    x = ''.join(random.choice(letters) for i in range(n_examples))
-    sentences = x.split('.')
-    return sentences
-
+        vocabulary[word] +=1 
 
 def load_data():
 
@@ -43,11 +27,7 @@ def load_data():
 
 if __name__ == '__main__':
 
-    chunksize = 100
-
-    # Uncomment for randomly generated data
-    #n_examples = 1000_000
-    #sentences = build_sentences(n_examples)
+    chunksize = 1000
 
     sentences, _, _, _ = load_data()
     print(f'num docs = {len(sentences)}')
@@ -61,5 +41,7 @@ if __name__ == '__main__':
     for s in sentences:
         update_vocabulary(s, vocabulary, doc_analyzer)
 
-    print(f'time taken {time.time() - t0} seconds')
-    print('len(vocabulary.items())', len(vocabulary.items()))
+    print(f'time taken {time.time()-t0} seconds')
+    print('len(vocabulary.items())--->', len(vocabulary.items()))
+    print("(vocabulary['from'], vocabulary['gift'])--->", (vocabulary['from'], vocabulary['gift']))
+

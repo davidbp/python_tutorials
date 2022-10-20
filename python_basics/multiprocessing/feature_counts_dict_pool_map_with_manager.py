@@ -17,19 +17,9 @@ class MyManager(BaseManager):
 MyManager.register('defaultdict', defaultdict, DictProxy)
 
 def update_vocabulary(sentence, manager_vocabulary, doc_analyzer):
-    #x = doc_cleaner(x)
-    #print(len(manager_vocabulary), flush=True)
     words = doc_analyzer(sentence)
     for word in words:
-        manager_vocabulary[word] = len(manager_vocabulary)
-
-
-def build_sentences(n_examples):
-    letters = string.ascii_lowercase + ' ' + '.'
-    x = ''.join(random.choice(letters) for i in range(n_examples))
-    sentences = x.split('.')
-    return sentences
-
+        manager_vocabulary[word] += 1 
 
 def load_data():
 
@@ -47,10 +37,6 @@ if __name__ == '__main__':
 
     chunksize = 100
 
-    # Uncomment for randomly generated data
-    #n_examples = 1000_000
-    #sentences = build_sentences(n_examples)
-
     sentences, _, _, _ = load_data()
     print(f'num docs = {len(sentences)}')
 
@@ -65,6 +51,6 @@ if __name__ == '__main__':
 
     pool.starmap(update_vocabulary, zip(sentences, repeat(manager_vocabulary), repeat(doc_analyzer)), chunksize=chunksize)
     
-    print(f'time taken {t0 -time.time()} seconds')
-
+    print(f'time taken {time.time()-t0} seconds')
     print('len(manager_vocabulary.items())', len(manager_vocabulary.items()))
+    print("(vocabulary['from'], vocabulary['gift'])--->", (manager_vocabulary['from'], manager_vocabulary['gift']))
