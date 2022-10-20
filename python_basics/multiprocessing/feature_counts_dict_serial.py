@@ -41,10 +41,7 @@ if __name__ == '__main__':
     for s in sentences:
         update_vocabulary(s, vocabulary, doc_analyzer)
 
-    print(f'time taken {time.time()-t0} seconds')
     print('len(vocabulary.items())--->', len(vocabulary.items()))
     print("(vocabulary['from'], vocabulary['gift'])--->", (vocabulary['from'], vocabulary['gift']))
-
-
-
+    print(f'time taken {time.time()-t0} seconds')
 

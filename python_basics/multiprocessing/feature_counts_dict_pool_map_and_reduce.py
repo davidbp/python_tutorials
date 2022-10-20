@@ -60,6 +60,6 @@ if __name__ == '__main__':
     # An alternative way could be to use counter objects
     #vocabulary = reduce(lambda a,b: Counter(a)+Counter(b), partial_vocabularies)
 
-    print(f'time taken {time.time()-t0} seconds')
-    print('len(manager_vocabulary.items())--->', len(vocabulary.items()))
+    print('len(vocabulary.items())--->', len(vocabulary.items()))
     print("(vocabulary['from'], vocabulary['gift'])--->", (vocabulary['from'], vocabulary['gift']))
+    print(f'time taken {time.time()-t0} seconds')

@@ -52,8 +52,9 @@ if __name__ == '__main__':
     manager_vocabulary = manager.defaultdict(int)
 
     pool.starmap(update_vocabulary, zip(sentences, repeat(manager_vocabulary), repeat(doc_analyzer)), chunksize=chunksize)
+    vocabulary = manager_vocabulary
     
+    print('len(vocabulary.items())--->', len(vocabulary.items()))
+    print("(vocabulary['from'], vocabulary['gift'])--->", (vocabulary['from'], vocabulary['gift']))
     print(f'time taken {time.time()-t0} seconds')
-    print('len(manager_vocabulary.items())', len(manager_vocabulary.items()))
-    print("(vocabulary['from'], vocabulary['gift'])--->", (manager_vocabulary['from'], manager_vocabulary['gift']))
 
