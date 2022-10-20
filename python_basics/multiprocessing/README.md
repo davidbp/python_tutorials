@@ -25,7 +25,6 @@ python feature_counts_dict_joblib_parallel_and_reduce.py
 ```
 
 ```
-python feature_counts_dict_joblib_parallel_and_reduce.py
 num docs = 1131400
 len(partial_vocabularies)---> 1131400
 len(vocabulary.items())---> 130107
@@ -34,15 +33,15 @@ time taken 76.5679018497467 seconds
 ```
 
 
-
 Parallel version working in minibatches (not bottlenecked in the parallel part, a bit bottlenecked in the reduce step)
 ```
- python feature_counts_dict_joblib_parallel_and_reduce_in_chunks.py
+python feature_counts_dict_joblib_parallel_and_reduce_in_chunks.py
 ```
 
 ```
 num docs = 1131400
+len(partial_vocabularies)---> 12
 len(vocabulary.items())---> 130107
 (vocabulary['from'], vocabulary['gift'])---> (2267000, 6600)
-time taken 28.458199977874756 seconds
+time taken 26.82607889175415 seconds
 ```

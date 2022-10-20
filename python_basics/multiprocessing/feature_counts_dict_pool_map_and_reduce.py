@@ -67,8 +67,6 @@ if __name__ == '__main__':
     partial_vocabularies = pool.map(p_build_vocabulary, sentences) 
     print('len(partial_vocabularies)--->', len(partial_vocabularies))
     vocabulary = aggregate_dicts(partial_vocabularies)
-    # An alternative way could be to use counter objects
-    #vocabulary = reduce(lambda a,b: Counter(a)+Counter(b), partial_vocabularies)
 
     print('len(vocabulary.items())--->', len(vocabulary.items()))
     print("(vocabulary['from'], vocabulary['gift'])--->", (vocabulary['from'], vocabulary['gift']))

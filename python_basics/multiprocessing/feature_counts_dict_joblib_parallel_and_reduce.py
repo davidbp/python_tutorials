@@ -22,7 +22,7 @@ def aggregate_dicts(dicts):
         for d in dicts[1:]:
             for k,v in d.items():
                 result[k] +=v
-        
+
         return result
 
 
@@ -64,9 +64,6 @@ if __name__ == '__main__':
     partial_vocabularies = Parallel(n_jobs=n_jobs)(delayed(p_build_vocabulary)(s) for s in sentences)
     print('len(partial_vocabularies)--->', len(partial_vocabularies))
     vocabulary = aggregate_dicts(partial_vocabularies)
-
-    # An alternative way could be to use counter objects
-    #vocabulary = reduce(lambda a,b: Counter(a)+Counter(b), partial_vocabularies)
 
     print('len(vocabulary.items())--->', len(vocabulary.items()))
     print("(vocabulary['from'], vocabulary['gift'])--->", (vocabulary['from'], vocabulary['gift']))
