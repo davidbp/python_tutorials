@@ -2,23 +2,27 @@ import string
 import random
 
 from multiprocessing import Pool
-from multiprocessing.managers import BaseManager, DictProxy
 from collections import defaultdict
 from itertools import repeat
 
 import sklearn
 from sklearn import feature_extraction, datasets
 import time
+from functools import partial, reduce
+from collections import Counter
 
-class MyManager(BaseManager):
-    pass
 
-MyManager.register('defaultdict', defaultdict, DictProxy)
+def aggregate_dicts(dicts, operation=sum):
+    all_keys = set().union(*[el.keys() for el in dicts])
+    return {k: sum([dic.get(k, 0) for dic in dicts]) for k in all_keys}
 
-def update_vocabulary(sentence, manager_vocabulary, doc_analyzer):
+def build_vocabulary(sentence, doc_analyzer):
+    vocabulary = defaultdict(int)
     words = doc_analyzer(sentence)
+
     for word in words:
-        manager_vocabulary[word] += 1 
+        vocabulary[word] += 1 
+    return vocabulary
 
 def load_data():
 
@@ -34,25 +38,28 @@ def load_data():
 
 if __name__ == '__main__':
 
-    chunksize = 100
+    n_jobs = 10
+    chunksize = 1000
 
     factor_multiplier = 100 # This factor ensures 1 million documents in the dataset
     sentences, _, _, _ = load_data()
     sentences = sentences * factor_multiplier
     print(f'num docs = {len(sentences)}')
 
+
     count_vectorizer = feature_extraction.text.CountVectorizer()
     doc_analyzer = count_vectorizer.build_analyzer()
 
     t0 = time.time()
     pool = Pool(processes=10)
-    manager = MyManager()
-    manager.start()
-    manager_vocabulary = manager.defaultdict(int)
 
-    pool.starmap(update_vocabulary, zip(sentences, repeat(manager_vocabulary), repeat(doc_analyzer)), chunksize=chunksize)
-    
+    p_build_vocabulary = partial(build_vocabulary,  doc_analyzer=doc_analyzer)
+    partial_vocabularies = pool.map(p_build_vocabulary, sentences) 
+    print('len(partial_vocabularies)--->', len(partial_vocabularies))
+    vocabulary = aggregate_dicts(partial_vocabularies)
+    # An alternative way could be to use counter objects
+    #vocabulary = reduce(lambda a,b: Counter(a)+Counter(b), partial_vocabularies)
+
     print(f'time taken {time.time()-t0} seconds')
-    print('len(manager_vocabulary.items())', len(manager_vocabulary.items()))
-    print("(vocabulary['from'], vocabulary['gift'])--->", (manager_vocabulary['from'], manager_vocabulary['gift']))
-
+    print('len(manager_vocabulary.items())--->', len(vocabulary.items()))
+    print("(vocabulary['from'], vocabulary['gift'])--->", (vocabulary['from'], vocabulary['gift']))

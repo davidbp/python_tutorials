@@ -27,9 +27,7 @@ def load_data():
 
 if __name__ == '__main__':
 
-    n_jobs = 10
     factor_multiplier = 100 # This factor ensures 1 million documents in the dataset
-
     sentences, _, _, _ = load_data()
     sentences = sentences * factor_multiplier
     print(f'num docs = {len(sentences)}')
