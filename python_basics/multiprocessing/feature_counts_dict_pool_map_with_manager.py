@@ -34,6 +34,7 @@ def load_data():
 
 if __name__ == '__main__':
 
+    n_jobs = 10
     chunksize = 100
 
     factor_multiplier = 100 # This factor ensures 1 million documents in the dataset
@@ -45,7 +46,7 @@ if __name__ == '__main__':
     doc_analyzer = count_vectorizer.build_analyzer()
 
     t0 = time.time()
-    pool = Pool(processes=10)
+    pool = Pool(processes=n_jobs)
     manager = MyManager()
     manager.start()
     manager_vocabulary = manager.defaultdict(int)

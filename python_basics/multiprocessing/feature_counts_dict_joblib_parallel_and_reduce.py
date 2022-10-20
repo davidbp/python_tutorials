@@ -44,8 +44,6 @@ if __name__ == '__main__':
     sentences = sentences * factor_multiplier
     print(f'num docs = {len(sentences)}')
     
-    print(f'num docs = {len(sentences)}')
-
     count_vectorizer = feature_extraction.text.CountVectorizer()
     doc_analyzer = count_vectorizer.build_analyzer()
 

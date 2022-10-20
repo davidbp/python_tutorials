@@ -51,7 +51,7 @@ if __name__ == '__main__':
     doc_analyzer = count_vectorizer.build_analyzer()
 
     t0 = time.time()
-    pool = Pool(processes=10)
+    pool = Pool(processes=n_jobs)
 
     p_build_vocabulary = partial(build_vocabulary,  doc_analyzer=doc_analyzer)
     partial_vocabularies = pool.map(p_build_vocabulary, sentences) 
