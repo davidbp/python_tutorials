@@ -6,42 +6,29 @@ from itertools import repeat
 
 import sklearn
 from sklearn import feature_extraction, datasets
-import time
+
+from utils import timer, load_data
 
 def update_vocabulary(sentence, vocabulary, doc_analyzer):
     words = doc_analyzer(sentence)
     for word in words:
         vocabulary[word] +=1 
 
-def load_data():
-
-    X = sklearn.datasets.fetch_20newsgroups()
-
-    X_train = sklearn.datasets.fetch_20newsgroups(subset="train").data
-    y_train = sklearn.datasets.fetch_20newsgroups(subset="train").target
-    X_test  = sklearn.datasets.fetch_20newsgroups(subset="test").data
-    y_test  = sklearn.datasets.fetch_20newsgroups(subset="test").target
-
-    return X_train, y_train, X_test, y_test
-
-
 if __name__ == '__main__':
 
     factor_multiplier = 100 # This factor ensures 1 million documents in the dataset
     sentences, _, _, _ = load_data()
     sentences = sentences * factor_multiplier
-    print(f'num docs = {len(sentences)}')
+    print(f'num docs = {len(sentences)}\n')
 
     count_vectorizer = feature_extraction.text.CountVectorizer()
     doc_analyzer = count_vectorizer.build_analyzer()
     vocabulary = defaultdict(int)
-
-    t0 = time.time()
     
-    for s in sentences:
-        update_vocabulary(s, vocabulary, doc_analyzer)
+    with timer('overall', indentation=''):
+        for s in sentences:
+            update_vocabulary(s, vocabulary, doc_analyzer)
 
-    print('len(vocabulary.items())--->', len(vocabulary.items()))
+    print('\nlen(vocabulary.items())--->', len(vocabulary.items()))
     print("(vocabulary['from'], vocabulary['gift'])--->", (vocabulary['from'], vocabulary['gift']))
-    print(f'time taken {time.time()-t0} seconds')
 

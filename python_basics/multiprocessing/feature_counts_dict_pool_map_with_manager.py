@@ -20,6 +20,7 @@ def update_vocabulary(sentence, manager_vocabulary, doc_analyzer):
     for word in words:
         manager_vocabulary[word] += 1 
 
+
 def load_data():
 
     X = sklearn.datasets.fetch_20newsgroups()
@@ -53,7 +54,7 @@ if __name__ == '__main__':
 
     pool.starmap(update_vocabulary, zip(sentences, repeat(manager_vocabulary), repeat(doc_analyzer)), chunksize=chunksize)
     vocabulary = manager_vocabulary
-    
+
     print('len(vocabulary.items())--->', len(vocabulary.items()))
     print("(vocabulary['from'], vocabulary['gift'])--->", (vocabulary['from'], vocabulary['gift']))
     print(f'time taken {time.time()-t0} seconds')
