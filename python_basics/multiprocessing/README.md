@@ -3,9 +3,16 @@
 
 ## Feature counts
 
-Example building a dict that contains word counts.
+Example building a dict that contains word counts. This example showcases three different approaches found in 
 
-Serial version (bottlenecked by the completly serial operation)
+```
+feature_counts_dict_serial.py
+feature_counts_dict_joblib_parallel_and_reduce.py
+feature_counts_dict_joblib_parallel_and_reduce_in_chunks.py
+```
+
+
+#### Serial version (bottlenecked by the completly serial operation)
 ```
 python feature_counts_dict_serial.py 
 ```
@@ -20,7 +27,7 @@ len(vocabulary.items())---> 130107
 ```
 
 
-Parallel version working one element at a time (bottlenecked by the reduce step)
+#### Parallel version working one element at a time (bottlenecked by the reduce step)
 
 ```
 python feature_counts_dict_joblib_parallel_and_reduce.py
@@ -39,7 +46,10 @@ len(vocabulary.items())---> 130107
 ```
 
 
-Parallel version working in minibatches (not bottlenecked in the parallel part, irrelevant bottlenecked in the reduce step)
+#### Parallel version working in minibatches 
+
+Note this implementation is not bottlenecked in the parallel part, it has an irrelevant bottlenecked in the reduce step.
+
 ```
 python feature_counts_dict_joblib_parallel_and_reduce_in_chunks.py
 ```
