@@ -44,6 +44,7 @@ def get_batches(s, n, truncate=False):
     if len(s) and not truncate:
         yield s
 
+
 if __name__ == '__main__':
 
     n_jobs = 10
