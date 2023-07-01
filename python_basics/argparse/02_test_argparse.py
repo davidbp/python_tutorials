@@ -25,7 +25,7 @@ def cylinder_volume(radius, height ):
 
 if __name__ == "__main__":
     args = build_argument_parser()
-    radius, height = agrs.radius, args.height
+    radius, height = args.radius, args.height
     
     volume = cylinder_volume(radius, height)
     print("Cylinder volume is {}".format(volume))
