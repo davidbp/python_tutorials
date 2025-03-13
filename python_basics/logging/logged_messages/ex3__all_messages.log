@@ -1,0 +1,4 @@
+2025-02-25 11:19:18,678 - DEBUG - Debug message - in file only
+2025-02-25 11:19:18,678 - INFO - Info message - in file only
+2025-02-25 11:19:18,678 - WARNING - Warning message - in both file and console
+2025-02-25 11:19:18,678 - ERROR - Error message - in both file and console
