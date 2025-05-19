@@ -3,4 +3,4 @@ Keras==2.2.4
 matplotlib==3.0.2
 numpy==1.22.0
 tqdm==4.28.1
-scikit_learn==0.20.3
+scikit_learn==1.5.0
