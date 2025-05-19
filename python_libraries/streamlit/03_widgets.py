@@ -96,6 +96,7 @@ if uploaded_file:
 """
 st.code(code_ex_4)
 
+### Example 4 BEGIN ###
 uploaded_file = None
 uploaded_file = st.file_uploader("Upload Image (.png or .jpg only)", type=['png','jpg'], key='uploader_flag')
 
@@ -104,8 +105,26 @@ if uploaded_file:
     image = Image.open(io.BytesIO(bytes_uploaded_file))
     image = image.resize((256,256))
     st.image(image)
+### Example 4 END ###
 
 
+
+st.subheader("Text uploader: `st.text_input`")
+
+'The following code will allow you to create a box for writting text'
+
+code_ex_5 = """
+uploaded_urls = st.text_input("Paste here urls")
+"""
+st.code(code_ex_5)
+
+### Example 5 BEGIN ###
+uploaded_urls = st.text_input("Paste here urls")
+### Example 5 END ###
+parsed_urls = uploaded_urls.split('\n')
+st.write('Number of uploaded urls are:', len(parsed_urls))
+for url in parsed_urls:
+    st.write('uploaded_urls are:', url)
 
 
 
