@@ -1,5 +1,5 @@
 plotly==3.4.1
-Keras==2.2.4
+Keras==3.9.0
 matplotlib==3.0.2
 tqdm==4.66.3
 numpy==1.22.0
